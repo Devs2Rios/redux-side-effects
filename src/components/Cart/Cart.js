@@ -1,12 +1,14 @@
 import Card from '../UI/Card';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
-  const items = useSelector(state => state.cart.items);
+  const items = useSelector(state => state.cart.items),
+    showCart = useSelector(state => state.ui.showCart);
 
   return (
+    showCart &&
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
       {
