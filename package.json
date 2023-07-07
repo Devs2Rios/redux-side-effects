@@ -1,5 +1,6 @@
 {
-  "name": "react-complete-guide",
+  "name": "redux-side-effects",
+  "homepage": "/redux-side-effects",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
