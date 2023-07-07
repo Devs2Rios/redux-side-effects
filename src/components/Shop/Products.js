@@ -2,7 +2,7 @@ import ProductItem from './ProductItem';
 import classes from './Products.module.css';
 import products from '../../data/products';
 
-const Products = (props) => {
+const Products = () => {
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
