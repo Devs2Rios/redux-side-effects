@@ -1,11 +1,18 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../store/cart';
+import { replaceCart } from '../../utils/services';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
-import { cartActions } from '../../store/cart';
 
 const ProductItem = ({ title, price, description }) => {
   const dispatch = useDispatch(),
+    items = useSelector(state => state.cart.items),
     addItem = () => dispatch(cartActions.addItem({ title, price }));
+
+  useEffect(() => {
+    (async () => await replaceCart(items))();
+  }, [items])
 
   return (
     <li className={classes.item}>

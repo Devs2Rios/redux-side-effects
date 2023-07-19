@@ -13,7 +13,6 @@ const Products = () => {
       setProducts([]);
       try {
         const _products = await getProducts();
-        console.log(_products)
         setProducts(_products);
       } catch (err) {
         setError('There was an error fetching products');
