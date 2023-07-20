@@ -1,5 +1,22 @@
+import { cartActions } from "./cart";
 import { uiActions } from "./ui";
-import { replaceCart } from '../utils/services';
+import { getCart, replaceCart } from '../utils/services';
+
+export const fetchCartData = () => {
+    return async (dispatch) => {
+        try {
+            const data = await getCart();
+            dispatch(cartActions.setCart(data ? data.items : []));
+        } catch (err) {
+            dispatch(cartActions.setCart([]));
+            dispatch(uiActions.showNotification({
+                status: 'error',
+                title: 'Error!',
+                message: 'Fetching cart data failed!'
+            }))
+        }
+    }
+}
 
 export const sendCartData = (items) => {
     return async (dispatch) => {
