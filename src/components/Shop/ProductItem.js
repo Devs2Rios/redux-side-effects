@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart';
-import { uiActions } from '../../store/ui';
-import { replaceCart } from '../../utils/services';
+import { sendCartData } from '../../store/cart-actions';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
@@ -17,29 +16,8 @@ const ProductItem = ({ title, price, description }) => {
     };
 
   useEffect(() => {
-    if (!isInitial)
-      (async () => {
-        try {
-          dispatch(uiActions.showNotification({
-            status: 'pending',
-            title: 'Sending!',
-            message: 'Sending cart data!'
-          }))
-          await replaceCart(items);
-          dispatch(uiActions.showNotification({
-            status: 'success',
-            title: 'Success!',
-            message: 'Sending cart data successful!'
-          }))
-        } catch (err) {
-          dispatch(uiActions.showNotification({
-            status: 'error',
-            title: 'Error!',
-            message: 'Sending cart data failed!'
-          }))
-        }
-      })();
-  }, [dispatch, items])
+    if (!isInitial) dispatch(sendCartData(items));
+  }, [dispatch, items]);
 
   return (
     <li className={classes.item}>
