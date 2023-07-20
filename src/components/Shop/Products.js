@@ -16,7 +16,6 @@ const Products = () => {
         setProducts(_products);
       } catch (err) {
         setError('There was an error fetching products');
-        alert(err);
       }
       setIsLoading(false);
     }, []);

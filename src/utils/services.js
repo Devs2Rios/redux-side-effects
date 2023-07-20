@@ -1,21 +1,17 @@
 import { apiUrl } from './config';
 
 export const getProducts = async () => {
-    const response = await fetch(`${apiUrl}products.json`)
-        .then(data => data.json())
-        .catch((err) => console.error(err));
-    return response;
+    return await fetch(`${apiUrl}products.json`)
+        .then(data => data.json());
 }
 
 export const getCart = async () => {
-    const response = await fetch(`${apiUrl}cart.json`)
-        .then(data => data.json())
-        .catch(err => console.error(err));
-    return response
+    return await fetch(`${apiUrl}cart.json`)
+        .then(data => data.json());
 }
 
 export const replaceCart = async (items) => {
-    const response = await fetch(`${apiUrl}cart.json`,
+    return await fetch(`${apiUrl}cart.json`,
         {
             method: 'PUT',
             body: JSON.stringify({ items }),
@@ -25,6 +21,4 @@ export const replaceCart = async (items) => {
         }
     )
         .then((data) => data.json())
-        .catch((err) => console.error(err));
-    return response
 }
